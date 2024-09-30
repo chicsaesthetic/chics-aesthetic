@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style3.css">
+    <title>Product Page</title>
+</head>
+<body>
+
+    <!-- Page Header -->
+    <div class="header">
+        <h1>Products</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="policy.html">Policy</a>
+        </nav>
+    </div>
+
+    <!-- Language Selection Buttons -->
+    <div class="language-box">
+        <button onclick="setLanguage('en')">English</button>
+        <button onclick="setLanguage('fr')">Français</button>
+        <button onclick="setLanguage('es')">Español</button>
+    </div>
+
+    <!-- Dropdown to Select Product -->
+    <select id="productSelect" class="small-dropdown" onchange="scrollToProduct()">
+        <option value="">--Select a Product--</option>
+        <option value="product1">Glass Plaque</option>
+        <option value="product2">Plexiglass Plaque</option>
+        <option value="product3">Custom Character Sign</option>
+        <option value="product4">Custom Character Stickers</option>
+        <option value="product5">Custom Sign</option>
+        <option value="product6">Pajama</option>
+        <option value="product7">Keychains</option>
+        <option value="product8">Boxes</option>
+        <option value="product9">Bouquet</option>
+        <option value="product10">Other Customs</option>
+        <option value="product11">Our Packages</option>
+        <option value="product12">Custom Mirror</option>
+    </select>
+
+    <!-- Product Sections -->
+    <div id="product1" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Plaque .mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Glass Plaque</h2>
+            <p class="description">Get a personalized gift  for a loved one or yourself with a personal picture and a song or quote of your choice.</p>
+            <button onclick="orderNow('Glass Plaque')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product2" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Plexiglass.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Plexiglass Plaque</h2>
+            <p class="description">Get a personalized gift  for a loved one or yourself with a personal picture and a song or quote of your choice.</p>
+            <button onclick="orderNow('Plexiglass Plaque')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product3" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Character sign copy.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Custom Character Sign</h2>
+            <p class="description">Have your favorite characters displayed around your home or as a personalized gift for your loved one with their favorite characters.</p>
+            <button onclick="orderNow('Custom Character Sign')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product4" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Character .mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Custom Character Stickers</h2>
+            <p class="description">Have Stickers of your favorite Character for your personal items.</p>
+            <button onclick="orderNow('Custom Character Stickers')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product5" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Downloads\Weeding .mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Custom Sign</h2>
+            <p class="description">Be able to Have a custom sign for any occasion.</p>
+            <button onclick="orderNow('Custom Sign')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product6" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Pyjamas .MP4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Pajama</h2>
+            <p class="description">Get a pajamas that can be personalized for you.</p>
+            <button onclick="orderNow('Pajama')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product7" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Key.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Keychains</h2>
+            <p class="description">Personalize a Keychain as a memorable gift for someone or for your self.</p>
+            <button onclick="orderNow('Keychains')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product8" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Snacks .mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Boxes</h2>
+            <p class="description">Get a box for a loved one or as a gift for yourself. We offer Snack Boxes , Makeup Boxes , Art Boxes and your able to get a mixed Boxes.</p>
+            <button onclick="orderNow('Boxes')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product9" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Bouquet.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Bouquet</h2>
+            <p class="description">Get a bouquet for a loved one or as a gift for yourself. We offer Snack Bouquets , Makeup Bouquets , Art Bouquets and your able to get a mixed Bouquets.</p>
+            <button onclick="orderNow('Bouquet')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product10" class="container">
+        <div class="video-section">
+            <video src="c:\Users\ronil\Videos\Other customs.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Other Customs</h2>
+            <p class="description">If your looking for something other than what is presented or have a vision of something you want , Click the order button.</p>
+            <button onclick="orderNow('Other Customs')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product11" class="container">
+        <div class="video-section">
+            <video src="videos/product11-video.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Our Packages</h2>
+            <p class="description">We offer packages for different occasions such as (Birthdays , Weddings , Movies nights , Sleepover) If you need a package price for any occasion not mentioned feel free to contact us .</p>
+            <button onclick="orderNow('Our Packages')">Order Now</button>
+        </div>
+    </div>
+
+    <div id="product12" class="container">
+        <div class="video-section">
+            <video src="videos/product12-video.mp4" controls></video>
+        </div>
+        <div class="details-section">
+            <h2>Custom Mirror</h2>
+            <p class="description">Stylish custom mirrors to elevate your decor.</p>
+            <button onclick="orderNow('Custom Mirror')">Order Now</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Your Company. All rights reserved.</p>
+    </footer>
+
+    <!-- Link JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
