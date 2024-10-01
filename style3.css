@@ -12,23 +12,39 @@ body {
     color: white;
 }
 
-.nav-link {
-    margin-right: 20px;
-    font-size: 24px; /* Adjust the size of the icons */
-    color: #333; /* Default color for icons */
-    text-decoration: none; /* Remove underline from links */
+/* Navigation Bar Styles */
+.nav-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f8f9fa; /* Background color for the nav */
+  }
+  
+  /* Center the navigation links */
+  .nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; /* Space between icons and policy */
+  }
+  
+  /* Style the navigation links */
+  .nav-link {
+    font-size: 24px; /* Icon size */
+    color: #ffffff; /* Text and icon color */
+    text-decoration: none; /* Remove underline */
   }
   
   .nav-link:hover {
-    color: #000; /* Change color on hover */
+    color: #000; /* Darken color on hover */
   }
   
-  nav {
-    display: flex;
-    justify-content: space-between; /* Spread out the icons */
+  /* Optional: Add some padding to the nav links for better spacing */
+  .nav-link i, .nav-link {
     padding: 10px;
   }
-
+  
 .language-box {
     display: flex;
     justify-content: center;
