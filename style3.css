@@ -29,22 +29,29 @@ body {
     gap: 30px; /* Space between icons and policy */
   }
   
-  /* Style the navigation links */
-  .nav-link {
-    font-size: 24px; /* Icon size */
-    color: #ffffff; /* Text and icon color */
-    text-decoration: none; /* Remove underline */
-  }
-  
-  .nav-link:hover {
-    color: #000; /* Darken color on hover */
-  }
-  
-  /* Optional: Add some padding to the nav links for better spacing */
-  .nav-link i, .nav-link {
+  nav {
+    display: flex;
+    justify-content: center; /* Center the navigation items */
     padding: 10px;
-  }
-  
+    background-color: #f8f8f8; /* Optional: add a background color */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.nav-link {
+    margin: 0 15px; /* Horizontal spacing between icons and text */
+    font-size: 24px; /* Adjust the size of the icons */
+    color: #333; /* Default color for icons and text */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.nav-link:hover {
+    color: #000; /* Change color on hover */
+}
+
 .language-box {
     display: flex;
     justify-content: center;
