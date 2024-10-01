@@ -12,9 +12,22 @@ body {
     color: white;
 }
 
-nav {
-    margin-top: 10px;
-}
+.nav-link {
+    margin-right: 20px;
+    font-size: 24px; /* Adjust the size of the icons */
+    color: #333; /* Default color for icons */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .nav-link:hover {
+    color: #000; /* Change color on hover */
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between; /* Spread out the icons */
+    padding: 10px;
+  }
 
 .language-box {
     display: flex;
