@@ -152,85 +152,55 @@ footer {
 .language-box button:hover {
     background-color: #ff4477;
 }
-/* Popup styling */
-.popup {
+/* Modal styles */
+.modal {
     display: none; /* Hidden by default */
     position: fixed;
-    bottom: 0;
+    z-index: 1;
     left: 0;
+    top: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+    height: 100%;
+    background-color: #ff4477; /* Black background with opacity */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
     padding: 20px;
-    z-index: 1000;
-    font-family: 'YourWebsiteFont', sans-serif; /* Use the same font family as your site */
-    color: #fff; /* White text for contrast */
-}
-
-/* Popup content styling */
-.popup-content {
-    background-color: #fff; /* White background for content */
-    color: #000; /* Dark text color */
-    margin: auto;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
+    border: 1px solid #888;
+    width: 80%;
     max-width: 600px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-/* Close button for popup */
-.close-popup {
+  }
+  
+  .modal-body {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-video {
+    width: 50%;
+  }
+  
+  .modal-form {
+    width: 45%;
+  }
+  
+  .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-    cursor: pointer;
-}
-
-.close-popup:hover,
-.close-popup:focus {
-    color: #000;
+  }
+  
+  .close:hover, .close:focus {
+    color: black;
     text-decoration: none;
-}
-
-/* Form styling */
-form#orderPopupForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    font-size: 16px; /* Consistent font size */
-}
-
-form#orderPopupForm input,
-form#orderPopupForm select,
-form#orderPopupForm button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc; /* Soft border */
-    font-size: 16px;
-    width: 100%;
-}
-
-form#orderPopupForm input[type="file"] {
-    border: none;
-}
-
-form#orderPopupForm button {
-    background-color: #1d1d1d; /* Your button background color */
-    color: #fff;
     cursor: pointer;
-}
-
-form#orderPopupForm button:hover {
-    background-color: #333; /* Darken button on hover */
-}
-
-/* Popup video styling */
-.popup-video {
-    margin: 10px 0;
-}
-
-.popup-video video {
-    width: 100%;
-    border-radius: 10px; /* Same border radius as other elements */
-}
+  }
+  
+  #shippingSection {
+    margin-top: 15px;
+  }
+  
+  

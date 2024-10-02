@@ -78,128 +78,52 @@ function showProduct(productId) {
     document.getElementById(productId).style.display = 'flex'; // Show the selected product
 }
 
-
-function openPopup(productName, productDescription, productVideoUrl) {
-    // Set the product information in the popup
-    document.getElementById('popupProductName').innerText = productName;
-    document.getElementById('popupProductDescription').innerText = productDescription;
-    document.getElementById('popupProductVideo').src = productVideoUrl;
-
-    // Show the popup
-    document.getElementById('orderPopup').style.display = 'block';
-}
-
-function closePopup() {
-    document.getElementById('orderPopup').style.display = 'none';
-}
-
-// Click outside the popup to close it
-window.onclick = function(event) {
-    var popup = document.getElementById('orderPopup');
-    if (event.target == popup) {
-        popup.style.display = 'none';
+// Open the modal and populate it with product information
+function orderNow(productName, productDescription, videoSrc) {
+    document.getElementById('modalProductTitle').textContent = productName;
+    document.getElementById('modalProductDescription').textContent = productDescription;
+    document.getElementById('modalProductVideo').src = videoSrc;
+    
+    document.getElementById('orderModal').style.display = 'block';
+  }
+  
+  // Close the modal
+  function closeModal() {
+    document.getElementById('orderModal').style.display = 'none';
+  }
+  
+  // Submit order form
+  function submitOrder() {
+    const email = document.getElementById('email').value;
+    const instagram = document.getElementById('instagram').value;
+    const productOption = document.getElementById('productOption').value;
+    const photo = document.getElementById('photo').files[0];
+    const address = document.getElementById('address').value;
+  
+    // Validate email input
+    if (!email) {
+      alert('Please enter your email.');
+      return;
     }
-}
-
-document.getElementById("orderForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const instagram = document.getElementById("instagram").value;
-    const productName = document.getElementById("productName").innerText;
-    const selectedOption = document.getElementById("options").value;
-    const photo = document.getElementById("photoUpload").files[0]; // Get uploaded file
-
-    // If "Shipping" is selected, open the shipping modal
-    if (selectedOption === "Shipping") {
-        modal.style.display = "none";
-        shippingModal.style.display = "block";
+  
+    // Show a confirmation popup or send the form via email (you'll need a server for this)
+    // This is where the email-sending logic would go. 
+  
+    alert(`Order for ${email} submitted successfully!`);
+  
+    // Close the modal
+    closeModal();
+  }
+  
+  // Show shipping section if "shipping" option is selected
+  document.getElementById('productOption').addEventListener('change', function() {
+    if (this.value === 'option1') {  // Assuming option1 is "shipping"
+      document.getElementById('shippingSection').style.display = 'block';
     } else {
-        sendConfirmationEmailWithPhoto(productName, email, instagram, selectedOption, photo);
+      document.getElementById('shippingSection').style.display = 'none';
     }
-});
-
-function sendConfirmationEmailWithPhoto(productName, email, instagram, selectedOption, photo) {
-    // Create a form data object to include the uploaded photo
-    const formData = new FormData();
-    formData.append("product_name", productName);
-    formData.append("email", email);
-    formData.append("instagram", instagram);
-    formData.append("option", selectedOption);
-    formData.append("photo", photo); // Append the file
-
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_CONFIRMATION_TEMPLATE_ID", {
-        product_name: productName,
-        email: email,
-        instagram: instagram,
-        option: selectedOption
-    }, {
-        attachment: {
-            name: photo.name,
-            file: photo
-        }
-    })
-    .then(function(response) {
-       alert("A confirmation email has been sent. Please confirm to complete your order.");
-       modal.style.display = "none";
-    }, function(error) {
-       alert("Failed to send confirmation. Please try again.");
-    });
-}
-
-document.getElementById("shippingForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const fullName = document.getElementById("fullName").value;
-    const address = document.getElementById("address").value;
-    const city = document.getElementById("city").value;
-    const state = document.getElementById("state").value;
-    const zipCode = document.getElementById("zipCode").value;
-    const country = document.getElementById("country").value;
-    const email = document.getElementById("email").value;
-    const instagram = document.getElementById("instagram").value;
-    const productName = document.getElementById("productName").innerText;
-    const photo = document.getElementById("photoUpload").files[0];
-
-    sendFinalEmailWithShipping(productName, email, instagram, fullName, address, city, state, zipCode, country, photo);
-});
-
-function sendFinalEmailWithShipping(productName, email, instagram, fullName, address, city, state, zipCode, country, photo) {
-    const formData = new FormData();
-    formData.append("product_name", productName);
-    formData.append("email", email);
-    formData.append("instagram", instagram);
-    formData.append("full_name", fullName);
-    formData.append("address", address);
-    formData.append("city", city);
-    formData.append("state", state);
-    formData.append("zip_code", zipCode);
-    formData.append("country", country);
-    formData.append("photo", photo);
-
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_SHIPPING_CONFIRMATION_TEMPLATE_ID", {
-        product_name: productName,
-        email: email,
-        instagram: instagram,
-        full_name: fullName,
-        address: address,
-        city: city,
-        state: state,
-        zip_code: zipCode,
-        country: country
-    }, {
-        attachment: {
-            name: photo.name,
-            file: photo
-        }
-    })
-    .then(function(response) {
-       alert("A confirmation email has been sent. Please confirm to complete your order.");
-       shippingModal.style.display = "none";
-    }, function(error) {
-       alert("Failed to send confirmation. Please try again.");
-    });
-}
+  });
+  
 
 
 
