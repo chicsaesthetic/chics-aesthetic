@@ -78,60 +78,39 @@ function showProduct(productId) {
     document.getElementById(productId).style.display = 'flex'; // Show the selected product
 }
 
-// Open the modal and populate it with product information
-function orderNow(productName, productDescription, videoSrc) {
-    document.getElementById('modalProductTitle').textContent = productName;
-    document.getElementById('modalProductDescription').textContent = productDescription;
-    document.getElementById('modalProductVideo').src = videoSrc;
-    
-    document.getElementById('orderModal').style.display = 'block';
-  }
-  
-  // Close the modal
-  function closeModal() {
-    document.getElementById('orderModal').style.display = 'none';
-  }
-  
-  // Submit order form
-  function submitOrder() {
-    const email = document.getElementById('email').value;
-    const instagram = document.getElementById('instagram').value;
-    const productOption = document.getElementById('productOption').value;
-    const photo = document.getElementById('photo').files[0];
-    const address = document.getElementById('address').value;
-  
-    // Validate email input
-    if (!email) {
-      alert('Please enter your email.');
-      return;
+// Get the modal and button
+var modal = document.getElementById("orderModal");
+var btns = document.querySelectorAll(".order-now"); // Ensure that this class is on all 'Order Now' buttons
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the 'Order Now' button
+btns.forEach(function(btn) {
+    btn.addEventListener("click", function(event) {
+        // Get product details dynamically and update modal content
+        var productName = event.target.getAttribute("data-product-name");
+        var productDesc = event.target.getAttribute("data-product-description");
+        var productVideo = event.target.getAttribute("data-product-video");
+        
+        document.getElementById("modalProductName").textContent = productName;
+        document.getElementById("modalDescription").textContent = productDesc;
+        
+        // Set the video source for the modal
+        var modalVideo = document.getElementById("modalVideo");
+        modalVideo.innerHTML = `<video src="${productVideo}" controls></video>`;
+        
+        // Show the modal
+        modal.style.display = "block";
+    });
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
     }
-  
-    // Show a confirmation popup or send the form via email (you'll need a server for this)
-    // This is where the email-sending logic would go. 
-  
-    alert(`Order for ${email} submitted successfully!`);
-  
-    // Close the modal
-    closeModal();
-  }
-  
-  // Show shipping section if "shipping" option is selected
-  document.getElementById('productOption').addEventListener('change', function() {
-    if (this.value === 'option1') {  // Assuming option1 is "shipping"
-      document.getElementById('shippingSection').style.display = 'block';
-    } else {
-      document.getElementById('shippingSection').style.display = 'none';
-    }
-  });
-  function orderNow(productName, productDescription, videoSrc) {
-    console.log('Order Now button clicked!'); // Add this line
-    document.getElementById('modalProductTitle').textContent = productName;
-    document.getElementById('modalProductDescription').textContent = productDescription;
-    document.getElementById('modalProductVideo').src = videoSrc;
-  
-    document.getElementById('orderModal').style.display = 'block';
-  }
-    
-
-
-
+}
