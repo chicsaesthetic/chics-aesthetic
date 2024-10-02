@@ -78,25 +78,128 @@ function showProduct(productId) {
     document.getElementById(productId).style.display = 'flex'; // Show the selected product
 }
 
-// Function to handle "Order Now" button clicks
-function orderNow(productName) {
-    const orderLinks = {
-        "Glass Plaque": "https://getformly.app/OE9wq5",
-        "Plexiglass Plaque": "https://getformly.app/OE9wq5",
-        "Custom Character Sign": "https://getformly.app/j8UnTr",
-        "Custom Character Stickers": "https://getformly.app/j8UnTr",
-        "Custom Sign": "https://getformly.app/cODwzMn",
-        "Pajama": "https://getformly.app/AqF3S9",
-        "Keychains": "https://getformly.app/lCSCu8",
-        "Boxes": "https://getformly.app/3TRFHE",
-        "Bouquet": "https://getformly.app/3TRFHE",
-        "Other Customs": "https://getformly.app/y5U2cV",
-        "Our Packages": "https://getformly.app/bKEU1X",
-        "Custom Mirror": "https://getformly.app/oNdM4O"
-    };
 
-    const orderLink = orderLinks[productName];
-    if (orderLink) {
-        window.location.href = orderLink; // Redirect to the product order link
+function openPopup(productName, productDescription, productVideoUrl) {
+    // Set the product information in the popup
+    document.getElementById('popupProductName').innerText = productName;
+    document.getElementById('popupProductDescription').innerText = productDescription;
+    document.getElementById('popupProductVideo').src = productVideoUrl;
+
+    // Show the popup
+    document.getElementById('orderPopup').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('orderPopup').style.display = 'none';
+}
+
+// Click outside the popup to close it
+window.onclick = function(event) {
+    var popup = document.getElementById('orderPopup');
+    if (event.target == popup) {
+        popup.style.display = 'none';
     }
 }
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const instagram = document.getElementById("instagram").value;
+    const productName = document.getElementById("productName").innerText;
+    const selectedOption = document.getElementById("options").value;
+    const photo = document.getElementById("photoUpload").files[0]; // Get uploaded file
+
+    // If "Shipping" is selected, open the shipping modal
+    if (selectedOption === "Shipping") {
+        modal.style.display = "none";
+        shippingModal.style.display = "block";
+    } else {
+        sendConfirmationEmailWithPhoto(productName, email, instagram, selectedOption, photo);
+    }
+});
+
+function sendConfirmationEmailWithPhoto(productName, email, instagram, selectedOption, photo) {
+    // Create a form data object to include the uploaded photo
+    const formData = new FormData();
+    formData.append("product_name", productName);
+    formData.append("email", email);
+    formData.append("instagram", instagram);
+    formData.append("option", selectedOption);
+    formData.append("photo", photo); // Append the file
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_CONFIRMATION_TEMPLATE_ID", {
+        product_name: productName,
+        email: email,
+        instagram: instagram,
+        option: selectedOption
+    }, {
+        attachment: {
+            name: photo.name,
+            file: photo
+        }
+    })
+    .then(function(response) {
+       alert("A confirmation email has been sent. Please confirm to complete your order.");
+       modal.style.display = "none";
+    }, function(error) {
+       alert("Failed to send confirmation. Please try again.");
+    });
+}
+
+document.getElementById("shippingForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const zipCode = document.getElementById("zipCode").value;
+    const country = document.getElementById("country").value;
+    const email = document.getElementById("email").value;
+    const instagram = document.getElementById("instagram").value;
+    const productName = document.getElementById("productName").innerText;
+    const photo = document.getElementById("photoUpload").files[0];
+
+    sendFinalEmailWithShipping(productName, email, instagram, fullName, address, city, state, zipCode, country, photo);
+});
+
+function sendFinalEmailWithShipping(productName, email, instagram, fullName, address, city, state, zipCode, country, photo) {
+    const formData = new FormData();
+    formData.append("product_name", productName);
+    formData.append("email", email);
+    formData.append("instagram", instagram);
+    formData.append("full_name", fullName);
+    formData.append("address", address);
+    formData.append("city", city);
+    formData.append("state", state);
+    formData.append("zip_code", zipCode);
+    formData.append("country", country);
+    formData.append("photo", photo);
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_SHIPPING_CONFIRMATION_TEMPLATE_ID", {
+        product_name: productName,
+        email: email,
+        instagram: instagram,
+        full_name: fullName,
+        address: address,
+        city: city,
+        state: state,
+        zip_code: zipCode,
+        country: country
+    }, {
+        attachment: {
+            name: photo.name,
+            file: photo
+        }
+    })
+    .then(function(response) {
+       alert("A confirmation email has been sent. Please confirm to complete your order.");
+       shippingModal.style.display = "none";
+    }, function(error) {
+       alert("Failed to send confirmation. Please try again.");
+    });
+}
+
+
+

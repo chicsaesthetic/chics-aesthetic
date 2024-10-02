@@ -152,3 +152,85 @@ footer {
 .language-box button:hover {
     background-color: #ff4477;
 }
+/* Popup styling */
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+    padding: 20px;
+    z-index: 1000;
+    font-family: 'YourWebsiteFont', sans-serif; /* Use the same font family as your site */
+    color: #fff; /* White text for contrast */
+}
+
+/* Popup content styling */
+.popup-content {
+    background-color: #fff; /* White background for content */
+    color: #000; /* Dark text color */
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Close button for popup */
+.close-popup {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-popup:hover,
+.close-popup:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Form styling */
+form#orderPopupForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px; /* Consistent font size */
+}
+
+form#orderPopupForm input,
+form#orderPopupForm select,
+form#orderPopupForm button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Soft border */
+    font-size: 16px;
+    width: 100%;
+}
+
+form#orderPopupForm input[type="file"] {
+    border: none;
+}
+
+form#orderPopupForm button {
+    background-color: #1d1d1d; /* Your button background color */
+    color: #fff;
+    cursor: pointer;
+}
+
+form#orderPopupForm button:hover {
+    background-color: #333; /* Darken button on hover */
+}
+
+/* Popup video styling */
+.popup-video {
+    margin: 10px 0;
+}
+
+.popup-video video {
+    width: 100%;
+    border-radius: 10px; /* Same border radius as other elements */
+}
