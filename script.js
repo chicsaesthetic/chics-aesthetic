@@ -123,7 +123,15 @@ function orderNow(productName, productDescription, videoSrc) {
       document.getElementById('shippingSection').style.display = 'none';
     }
   });
+  function orderNow(productName, productDescription, videoSrc) {
+    console.log('Order Now button clicked!'); // Add this line
+    document.getElementById('modalProductTitle').textContent = productName;
+    document.getElementById('modalProductDescription').textContent = productDescription;
+    document.getElementById('modalProductVideo').src = videoSrc;
   
+    document.getElementById('orderModal').style.display = 'block';
+  }
+    
 
 
 
