@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body class="cute-theme">
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="policy.html">Policy</a>
+    </nav>
+
+    <section class="product-page">
+       
+        
+        <div class="product-details">
+            <h2>Glass Plaque</h2>
+            <p>Get a personalized gift for a loved one or yourself with a personal picture and a song or quote of your choice.</p>
+            
+            
+            <form id="orderForm" action="https://formsubmit.co/chicsaestheticsxm@gmail.com" method="POST" enctype="multipart/form-data">
+                <h3>Product Name: Glass Plaque</h3>
+
+                <!-- Input fields for order -->
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="instagram">Instagram Username:</label>
+                <input type="text" id="instagram" name="instagram" placeholder="Enter your Instagram name" required>
+
+                <label for="productOptions">Select the color of your writting:</label>
+                <select id="productOptions1" name="productOptions1">
+                    <option value="Option 1">Red</option>
+                    <option value="Option 2">Purple</option>
+                    <option value="Option 3">Black</option>
+                    <option value="Option 4">White</option>
+                    <option value="Option 5">Pink</option>
+                    <option value="Option 6">Light Pink</option>
+                    <option value="Option 7">Blue</option>
+                    <option value="Option 8">Light Blue</option>
+                    <option value="Option 9">Green</option>
+                </select>
+
+                <label for="productOptions">Select Your Extra:</label>
+                <select id="productOptions2" name="productOptions2">
+                    <option value="Option 1">Rhinestones</option>
+                    <option value="Option 2">Exta Writting</option>
+                    <option value="Option 3">Rhinestone outline frame (Only for glass plaque)</option>
+                </select>
+
+                <label for="productOptions">Select Option 3:</label>
+                <select id="productOptions3" name="productOptions3">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                    <option value="Option 4">Option 4</option>
+                    <option value="Option 5">Option 5</option>
+                </select>
+
+                <label for="productOptions">Select Option 4:</label>
+                <select id="productOptions4" name="productOptions4">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                    <option value="Option 4">Option 4</option>
+                    <option value="Option 5">Option 5</option>
+                </select>
+
+                <label for="productOptions">Select Option 5:</label>
+                <select id="productOptions5" name="productOptions5">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                    <option value="Option 4">Option 4</option>
+                    <option value="Option 5">Option 5</option>
+                </select>
+
+                <label for="shipping">Do you need shipping?</label>
+<div class="radio-buttons">
+    <input type="radio" id="yesShipping" name="shipping" value="Yes">
+    <label for="yesShipping">Yes</label>
+
+    <input type="radio" id="noShipping" name="shipping" value="No" checked>
+    <label for="noShipping">No</label>
+</div>
+
+
+                <!-- Shipping Form (hidden by default) -->
+                <div id="shippingForm" style="display:none;">
+                    <h4>Shipping Information</h4>
+                    <label for="shippingAddress">Shipping Address:</label>
+                    <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Enter your shipping address">
+
+                    <label for="shippingCity">City:</label>
+                    <input type="text" id="shippingCity" name="shippingCity" placeholder="Enter your city">
+
+                    <label for="shippingPostalCode">Postal Code:</label>
+                    <input type="text" id="shippingPostalCode" name="shippingPostalCode" placeholder="Enter your postal code">
+                </div>
+
+                <!-- Image upload -->
+                <label for="productImage">Upload an Image:</label>
+                <input type="file" id="productImage" name="productImage" required>
+
+                <br><br>
+                <button type="submit">Order Now</button>
+            </form>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>Thank you for visiting! Your order will be processed after submitting the form.</p>
+    </footer>
+
+    <script>
+        // Show or hide the shipping form based on "Yes" or "No" selection
+        const yesShipping = document.getElementById("yesShipping");
+        const noShipping = document.getElementById("noShipping");
+        const shippingForm = document.getElementById("shippingForm");
+
+        yesShipping.addEventListener("change", function() {
+            if (this.checked) {
+                shippingForm.style.display = "block";
+            }
+        });
+
+        noShipping.addEventListener("change", function() {
+            if (this.checked) {
+                shippingForm.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
