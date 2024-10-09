@@ -21,7 +21,8 @@
             
             
             
-            <form id="orderForm" action="https://formsubmit.co/chicsaestheticsxm@gmail.com" method="POST" enctype="multipart/form-data">
+            <form id="orderForm" action="https://formsubmit.co/be0b9443a62c4199c501e592fa5aa8a1
+            " method="POST" enctype="multipart/form-data">
             
                 <!-- Input fields for order -->
                 <label for="email">Email:</label>
@@ -88,22 +89,62 @@
     </footer>
 
     <script>
-        // Show or hide the shipping form based on "Yes" or "No" selection
-        const yesShipping = document.getElementById("yesShipping");
-        const noShipping = document.getElementById("noShipping");
-        const shippingForm = document.getElementById("shippingForm");
+        function submitOrder() {
+    var productName = document.querySelector('h2').innerText;
+    var email = document.getElementById("email").value;
+    var instagram = document.getElementById("instagram").value;
+    var option1 = document.getElementById("option1").value;
+    var option2 = document.getElementById("option2").value;
+    var shipping = document.querySelector('input[name="shipping"]:checked').value;
+    var address = "";
+    var city = "";
+    var zip = "";
 
-        yesShipping.addEventListener("change", function() {
-            if (this.checked) {
-                shippingForm.style.display = "block";
-            }
-        });
+    // Check if shipping is selected as "Yes" to collect shipping details
+    if (shipping === "Yes") {
+        address = document.getElementById("address").value;
+        city = document.getElementById("city").value;
+        zip = document.getElementById("zip").value;
+    }
 
-        noShipping.addEventListener("change", function() {
-            if (this.checked) {
-                shippingForm.style.display = "none";
-            }
-        });
+    // Form the email content
+    var emailContent = `
+        Product: ${productName}\n
+        Email: ${email}\n
+        Instagram: ${instagram}\n
+        Option 1: ${option1}\n
+        Option 2: ${option2}\n
+        Shipping: ${shipping}\n
+        Address: ${address}\n
+        City: ${city}\n
+        ZIP Code: ${zip}
+    `;
+
+    // Sending email via EmailJS or any other email service
+    // Assuming you have already integrated EmailJS service
+    emailjs.send("your_service_id", "your_template_id", {
+        to_email: email, // send confirmation to the user
+        message: emailContent,
+        photo: document.getElementById('uploadPhoto').files[0]
+    }).then(function(response) {
+        alert('Order submitted! Please check your email to confirm.');
+    }, function(error) {
+        alert('Failed to submit the order: ' + error);
+    });
+}
+
+// Display the shipping form if "Yes" is selected for shipping
+document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
+    el.addEventListener('change', function() {
+        var shippingForm = document.getElementById('shippingForm');
+        if (this.value === 'Yes') {
+            shippingForm.style.display = 'block';
+        } else {
+            shippingForm.style.display = 'none';
+        }
+    });
+});
+
     </script>
 </body>
 </html>
