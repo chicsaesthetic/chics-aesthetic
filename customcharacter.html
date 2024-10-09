@@ -76,7 +76,8 @@
                     <input type="text" id="shippingPostalCode" name="shippingPostalCode" placeholder="Enter your postal code">
                 </div>
 
-                
+                <br><br>
+                <button type="submit">Order Now</button>
             </form>
         </div>
 
@@ -87,16 +88,6 @@
     </footer>
 
     <script>
-       function submitOrder() {
-    var productName = document.querySelector('h2').innerText;
-    var email = document.getElementById("email").value;
-    var instagram = document.getElementById("instagram").value;
-    var option1 = document.getElementById("option1").value;
-    var option2 = document.getElementById("option2").value;
-    var shipping = document.querySelector('input[name="shipping"]:checked').value;
-    var address = "";
-    var city = "";
-    var zip = "";
 
     // Check if shipping is selected as "Yes" to collect shipping details
     if (shipping === "Yes") {
@@ -107,7 +98,7 @@
 
     // Form the email content
     var emailContent = `
-        Product: ${productName}\n
+        Product: ${Custom.Character.Sign}\n
         Email: ${email}\n
         Instagram: ${instagram}\n
         Option 1: ${option1}\n
@@ -129,7 +120,7 @@
     }, function(error) {
         alert('Failed to submit the order: ' + error);
     });
-}
+
 
 // Display the shipping form if "Yes" is selected for shipping
 document.querySelectorAll('input[name="shipping"]').forEach(function(el) {

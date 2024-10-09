@@ -77,4 +77,14 @@ function showProduct(productId) {
     });
     document.getElementById(productId).style.display = 'flex'; // Show the selected product
 }
-
+function submitOrder() {
+    var productName = document.querySelector('h2').innerText;
+    var email = document.getElementById("email").value;
+    var instagram = document.getElementById("instagram").value;
+    var option1 = document.getElementById("option1").value;
+    var option2 = document.getElementById("option2").value;
+    var shipping = document.querySelector('input[name="shipping"]:checked').value;
+    var address = "";
+    var city = "";
+    var zip = "";
+}
