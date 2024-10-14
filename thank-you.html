@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chic's Aesthetic Products</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #shipping-form { display: none; }
+        .thank-you-message { text-align: center; display: none; }
+    </style>
+</head>
+<body>
+
+    <h1>Chic's Aesthetic</h1>
+
+    <!-- Product Section -->
+    <div>
+        <h2>Product Name: Chic's Aesthetic Premium Bag</h2>
+        <p>Description: A stylish and trendy bag for all occasions.</p>
+        <p>Price: $99.99</p>
+        <button onclick="document.getElementById('shipping-form').style.display='block'">Order Now</button>
+    </div>
+
+    <!-- Shipping Form -->
+    <div id="shipping-form">
+        <form id="order-form">
+            <label for="shipping">Do you want shipping?</label>
+            <select name="shipping" id="shipping" onchange="toggleShippingForm(this)">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+
+            <div id="shipping-details" style="display:none;">
+                <label for="name">Full Name:</label>
+                <input type="text" name="name" id="name" required>
+
+                <label for="address">Shipping Address:</label>
+                <textarea name="address" id="address" required></textarea>
+
+                <label for="product-option">Product Option:</label>
+                <select name="product-option" id="product-option">
+                    <option value="default">Default</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                </select>
+
+                <button type="submit">Submit Order</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Thank You Page -->
+    <div class="thank-you-message" id="thank-you-message">
+        <h1>Your Order Has Been Submitted!</h1>
+        <p>Thank you for purchasing with Chic's Aesthetic. We will process your order and get back to you shortly.</p>
+    </div>
+
+    <script>
+        // Show/hide shipping form based on user selection
+        function toggleShippingForm(selectElement) {
+            const form = document.getElementById('shipping-details');
+            form.style.display = (selectElement.value === 'yes') ? 'block' : 'none';
+        }
+
+        // Handle form submission
+        document.getElementById('order-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Form data collection
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const productOption = document.getElementById('product-option').value;
+            const shipping = document.getElementById('shipping').value;
+
+            // Sending email via EmailJS or Formspree
+            sendEmail(name, address, productOption, shipping);
+        });
+
+        function sendEmail(name, address, productOption, shipping) {
+            // Use EmailJS or any similar service to send the email
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                name: name,
+                address: address,
+                productOption: productOption,
+                shipping: shipping,
+                productName: "Chic's Aesthetic Premium Bag"
+            }).then(function(response) {
+                // On success, show thank you message
+                document.getElementById('shipping-form').style.display = 'none';
+                document.getElementById('thank-you-message').style.display = 'block';
+            }, function(error) {
+                console.log('FAILED...', error);
+            });
+        }
+    </script>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.2.0/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Initialize EmailJS with your User ID
+        })();
+    </script>
+
+</body>
+</html>
