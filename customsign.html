@@ -87,7 +87,69 @@
     <!-- JavaScript for form submission and shipping visibility -->
     <script>
         document.getElementById('orderForm').addEventListener('submit', function(event) {
-            // No need to prevent default because Formspree handles the submission
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Collect form data
+            const email = document.getElementById("email").value;
+            const instagram = document.getElementById("instagram").value;
+            const sign = document.getElementById("sign").value;
+            const shipping = document.querySelector('input[name="shipping"]:checked').value;
+            const shippingAddress = shipping === "Yes" ? document.getElementById("shippingAddress").value : "";
+            const shippingCity = shipping === "Yes" ? document.getElementById("shippingCity").value : "";
+            const shippingPostalCode = shipping === "Yes" ? document.getElementById("shippingPostalCode").value : "";
+
+            // Prepare data for Formspree
+            const formData = new FormData(this); // Get all form data
+            formData.append("email", email); // Add email to Formspree data
+            formData.append("instagram", instagram); // Add Instagram to Formspree data
+            formData.append("sign", sign); // Add sign to Formspree data
+
+            // Submit the form to Formspree
+            fetch(this.action, {
+                method: this.method,
+                body: formData,
+                headers: {
+                    "Accept": "application/json"
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('thank-you-message').style.display = 'block';
+                    console.log('Your order has been submitted!');
+                } else {
+                    alert('There was a problem with your submission.');
+                }
+            })
+            .catch(error => {
+                alert('There was a problem with your submission: ' + error.message);
+            });
+
+            // Get the uploaded file (if applicable)
+            const fileInput = document.getElementById('productImage');
+            const file = fileInput.files[0];
+
+            // Prepare FormData for the file upload (if a file is selected)
+            if (file) {
+                const fileData = new FormData();
+                fileData.append("file", file);
+                fileData.append("email", email); // Adding email to send with the file
+
+                // Upload the file separately
+                fetch("https://formsubmit.co/gittensronilia@gmail.com", {
+                    method: "POST",
+                    body: fileData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log("File uploaded successfully.");
+                    } else {
+                        console.log("File upload failed.");
+                    }
+                })
+                .catch(error => {
+                    console.log("Error uploading file: ", error);
+                });
+            }
         });
 
         // Show or hide the shipping form based on "Yes" or "No" selection
