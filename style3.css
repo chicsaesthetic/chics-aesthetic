@@ -38,8 +38,9 @@ body {
 
 .nav {
     display: flex;
-    align-items: center; /* Center items vertically */
-
+    justify-content: space-evenly;
+    padding: 10px;
+    background-color: #f8f8f8;
 }
 .language-box {
     display: flex;

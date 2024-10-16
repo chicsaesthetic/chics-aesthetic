@@ -4,12 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style4.css">
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-        (function() {
-            emailjs.init("nNO1yrh-MOiINxxNN"); // Replace with your EmailJS User ID
-        })();
-    </script>
     <title>Chic's Aesthetic - Boxes</title>
 </head>
 <body class="cute-theme">
@@ -23,8 +17,8 @@
     <section class="product-page">
         <div class="product-details">
             <h2>Boxes</h2>
-            
-            <form id="orderForm">
+
+            <form id="orderForm" action="https://formspree.io/f/xgveennd" method="POST">
                 <!-- Input fields for order -->
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -107,65 +101,6 @@
     </footer>
 
     <script>
-        // Handle form submission
-        document.getElementById('orderForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Collect form data
-            var productName = document.querySelector('h2').innerText;
-            var email = document.getElementById('email').value;
-            var instagram = document.getElementById('instagram').value;
-            var productOption1 = document.getElementById('productOptions1').value;
-            var productOption2 = document.getElementById('productOptions2').value;
-            var productOption3 = document.getElementById('productOptions3').value;
-            var information = document.getElementById('Information').value;
-            var shipping = document.querySelector('input[name="shipping"]:checked').value;
-            var shippingAddress = '';
-            var shippingCity = '';
-            var shippingPostalCode = '';
-
-            // If "Yes" is selected for shipping, get the shipping details
-            if (shipping === 'Yes') {
-                shippingAddress = document.getElementById('shippingAddress').value;
-                shippingCity = document.getElementById('shippingCity').value;
-                shippingPostalCode = document.getElementById('shippingPostalCode').value;
-            }
-
-            // Prepare email content
-            var emailContent = `
-                Product: ${productName}\n
-                Email: ${email}\n
-                Instagram: ${instagram}\n
-                Box Type: ${productOption1}\n
-                Box Color: ${productOption2}\n
-                Quantity: ${productOption3}\n
-                Special Details: ${information}\n
-                Shipping: ${shipping}\n
-                Shipping Address: ${shippingAddress}\n
-                City: ${shippingCity}\n
-                Postal Code: ${shippingPostalCode}
-            `;
-
-            // Send email via EmailJS
-            emailjs.send('service_tpsldi4', 'template_dzo11gj', {
-                product_name: productName,
-                email: email,
-                instagram: instagram,
-                product_option1: productOption1,
-                product_option2: productOption2,
-                product_option3: productOption3,
-                information: information,
-                shipping: shipping,
-                shipping_address: shippingAddress,
-                shipping_city: shippingCity,
-                shipping_postal_code: shippingPostalCode
-            }).then(function(response) {
-                alert('Order submitted! Please check your email to confirm.');
-            }, function(error) {
-                alert('Failed to submit the order: ' + error);
-            });
-        });
-
         // Show or hide the shipping form based on "Yes" or "No" selection
         document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
             el.addEventListener('change', function() {

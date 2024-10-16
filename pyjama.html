@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style4.css">
+    <title>Chic's Aesthetic - Pyjamas</title>
 </head>
 <body class="cute-theme">
 
@@ -14,16 +15,10 @@
     </nav>
 
     <section class="product-page">
-       
-        
         <div class="product-details">
             <h2>Pyjamas</h2>
             
-            
-            
-            <form id="orderForm" action="https://formsubmit.co/be0b9443a62c4199c501e592fa5aa8a1
-            " method="POST" enctype="multipart/form-data">
-            
+            <form id="orderForm" action="https://formspree.io/f/xgveennd" method="POST" enctype="multipart/form-data">
                 <!-- Input fields for order -->
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
@@ -31,66 +26,64 @@
                 <label for="instagram">Instagram Username:</label>
                 <input type="text" id="instagram" name="instagram" placeholder="Enter your Instagram name" required>
                 
-                <label for="song">Enter your Writting for the pyjama </label>
-                <input type="text" id="song" name="song" placeholder="Enter your  song or quote" required>
+                <label for="writting">Enter your writing for the pyjama:</label>
+                <input type="text" id="writting" name="writting" placeholder="Enter your writing" required>
                 
-                <label for="productOptions">Select the color of your writting:</label>
-                <select id="productOptions1" name="productOptions1">
-                    <option value="Option 1">Red</option>
-                    <option value="Option 2">Purple</option>
-                    <option value="Option 3">Black</option>
-                    <option value="Option 4">White</option>
-                    <option value="Option 5">Pink</option>
-                    <option value="Option 6">Light Pink</option>
-                    <option value="Option 7">Blue</option>
-                    <option value="Option 8">Light Blue</option>
-                    <option value="Option 9">Green</option>
-                </select>
-                <label for="productOptions">Select the color of your Pyjama:</label>
-                <select id="productOptions2" name="productOptions2">
-                    <option value="Option 1">Red</option>
-                    <option value="Option 2">Purple</option>
-                    <option value="Option 3">Black</option>
-                    <option value="Option 4">White</option>
-                    <option value="Option 5">Pink</option>
-                    <option value="Option 6">Light Pink</option>
-                    <option value="Option 7">Blue</option>
-                    <option value="Option 8">Light Blue</option>
-                    <option value="Option 9">Green</option>
+                <label for="writingColor">Select the color of your writing:</label>
+                <select id="writingColor" name="productOptions1">
+                    <option value="red">Red</option>
+                    <option value="purple">Purple</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="pink">Pink</option>
+                    <option value="light pink">Light Pink</option>
+                    <option value="blue">Blue</option>
+                    <option value="light blue">Light Blue</option>
+                    <option value="green">Green</option>
                 </select>
 
-
-                <label for="productOptions">Quantity:</label>
-                <select id="productOptions3" name="productOptions3">
-                    <option value="Option 1">1</option>
-                    <option value="Option 2">2</option>
-                    <option value="Option 3">4</option>
-                    <option value="Option 4">6</option>
-                    <option value="Option 5">8</option>
-                </select>
-                <label for="productOptions">Quantity:</label>
-                <select id="productOptions4" name="productOptions4">
-                    <option value="Option 1">xs</option>
-                    <option value="Option 2">S</option>
-                    <option value="Option 3">M</option>
-                    <option value="Option 4">L</option>
-                    <option value="Option 5">XL</option>
+                <label for="pajamaColor">Select the color of your Pyjama:</label>
+                <select id="pajamaColor" name="productOptions2">
+                    <option value="red">Red</option>
+                    <option value="purple">Purple</option>
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                    <option value="pink">Pink</option>
+                    <option value="light pink">Light Pink</option>
+                    <option value="blue">Blue</option>
+                    <option value="light blue">Light Blue</option>
+                    <option value="green">Green</option>
                 </select>
 
-                <label for="Information">Any requirements or details or placement?</label>
-                <input type="text" id="Information" name="Information" placeholder="requirements or details?" required>
+                <label for="quantity">Quantity:</label>
+                <select id="quantity" name="productOptions3">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                </select>
 
+                <label for="size">Select Size:</label>
+                <select id="size" name="productOptions4">
+                    <option value="xs">XS</option>
+                    <option value="s">S</option>
+                    <option value="m">M</option>
+                    <option value="l">L</option>
+                    <option value="xl">XL</option>
+                </select>
 
+                <label for="requirements">Any requirements or details or placement?</label>
+                <input type="text" id="requirements" name="Information" placeholder="requirements or details?" required>
 
                 <label for="shipping">Do you need shipping?</label>
-<div class="radio-buttons">
-    <input type="radio" id="yesShipping" name="shipping" value="Yes">
-    <label for="yesShipping">Yes</label>
+                <div class="radio-buttons">
+                    <input type="radio" id="yesShipping" name="shipping" value="Yes">
+                    <label for="yesShipping">Yes</label>
 
-    <input type="radio" id="noShipping" name="shipping" value="No" checked>
-    <label for="noShipping">No</label>
-</div>
-
+                    <input type="radio" id="noShipping" name="shipping" value="No" checked>
+                    <label for="noShipping">No</label>
+                </div>
 
                 <!-- Shipping Form (hidden by default) -->
                 <div id="shippingForm" style="display:none;">
@@ -113,7 +106,6 @@
                 <button type="submit">Order Now</button>
             </form>
         </div>
-
     </section>
 
     <footer>
@@ -122,65 +114,16 @@
 
     <script>
         // Show or hide the shipping form based on "Yes" or "No" selection
-        const yesShipping = document.getElementById("yesShipping");
-        const noShipping = document.getElementById("noShipping");
-        const shippingForm = document.getElementById("shippingForm");
-
-        yesShipping.addEventListener("change", function() {
-            if (this.checked) {
-                shippingForm.style.display = "block";
-            }
+        document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
+            el.addEventListener('change', function() {
+                var shippingForm = document.getElementById('shippingForm');
+                if (this.value === 'Yes') {
+                    shippingForm.style.display = 'block';
+                } else {
+                    shippingForm.style.display = 'none';
+                }
+            });
         });
-
-        noShipping.addEventListener("change", function() {
-            if (this.checked) {
-                shippingForm.style.display = "none";
-            }
-        });
-        function submitOrder() {
-    var productName = document.querySelector('h2').innerText;
-    var email = document.getElementById("email").value;
-    var instagram = document.getElementById("instagram").value;
-    var option1 = document.getElementById("option1").value;
-    var option2 = document.getElementById("option2").value;
-    var shipping = document.querySelector('input[name="shipping"]:checked').value;
-    var address = "";
-    var city = "";
-    var zip = "";
-
-    // Check if shipping is selected as "Yes" to collect shipping details
-    if (shipping === "Yes") {
-        address = document.getElementById("address").value;
-        city = document.getElementById("city").value;
-        zip = document.getElementById("zip").value;
-    }
-
-    // Form the email content
-    var emailContent = `
-        Product: ${productName}\n
-        Email: ${email}\n
-        Instagram: ${instagram}\n
-        Option 1: ${option1}\n
-        Option 2: ${option2}\n
-        Shipping: ${shipping}\n
-        Address: ${address}\n
-        City: ${city}\n
-        ZIP Code: ${zip}
-    `;
-
-    // Sending email via EmailJS or any other email service
-    // Assuming you have already integrated EmailJS service
-    emailjs.send("your_service_id", "your_template_id", {
-        to_email: email, // send confirmation to the user
-        message: emailContent,
-        photo: document.getElementById('uploadPhoto').files[0]
-    }).then(function(response) {
-        alert('Order submitted! Please check your email to confirm.');
-    }, function(error) {
-        alert('Failed to submit the order: ' + error);
-    });
-}
-
     </script>
 </body>
 </html>
