@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style4.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("nNO1yrh-MOiINxxNN"); // Replace with your EmailJS User ID
+        })();
+    </script>
+    <title>Chic's Aesthetic - Glass Plaque</title>
 </head>
 <body class="cute-theme">
 
@@ -14,47 +21,41 @@
     </nav>
 
     <section class="product-page">
-       
-        
         <div class="product-details">
             <h2>Glass Plaque</h2>
-            
-            
-            
-            <form id="orderForm" action="https://formsubmit.co/be0b9443a62c4199c501e592fa5aa8a1
-            " method="POST" enctype="multipart/form-data">
-            
+
+            <form id="orderForm">
                 <!-- Input fields for order -->
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
                 <label for="instagram">Instagram Username:</label>
                 <input type="text" id="instagram" name="instagram" placeholder="Enter your Instagram name" required>
-                
+
                 <label for="song">Enter your Song or Quote:</label>
-                <input type="text" id="song" name="song" placeholder="Enter your  song or quote" required>
-                
-                <label for="productOptions">Select the color of your writting:</label>
+                <input type="text" id="song" name="song" placeholder="Enter your song or quote" required>
+
+                <label for="productOptions1">Select the color of your writing:</label>
                 <select id="productOptions1" name="productOptions1">
-                    <option value="Option 1">Red</option>
-                    <option value="Option 2">Purple</option>
-                    <option value="Option 3">Black</option>
-                    <option value="Option 4">White</option>
-                    <option value="Option 5">Pink</option>
-                    <option value="Option 6">Light Pink</option>
-                    <option value="Option 7">Blue</option>
-                    <option value="Option 8">Light Blue</option>
-                    <option value="Option 9">Green</option>
+                    <option value="Red">Red</option>
+                    <option value="Purple">Purple</option>
+                    <option value="Black">Black</option>
+                    <option value="White">White</option>
+                    <option value="Pink">Pink</option>
+                    <option value="Light Pink">Light Pink</option>
+                    <option value="Blue">Blue</option>
+                    <option value="Light Blue">Light Blue</option>
+                    <option value="Green">Green</option>
                 </select>
 
-                <label for="productOptions">Select Your Extra:</label>
+                <label for="productOptions2">Select Your Extra:</label>
                 <select id="productOptions2" name="productOptions2">
-                    <option value="Rhinestone>Rhinestones"></option>
-                    <option value="extra writting">Exta Writting</option>
-                    <option value="Rhinestone outline frame3">Rhinestone outline frame (Only for glass plaque)</option>
+                    <option value="Rhinestones">Rhinestones</option>
+                    <option value="Extra Writing">Extra Writing</option>
+                    <option value="Rhinestone Outline Frame">Rhinestone Outline Frame (Only for glass plaque)</option>
                 </select>
 
-                <label for="productOptions">Quantity:</label>
+                <label for="productOptions3">Quantity:</label>
                 <select id="productOptions3" name="productOptions3">
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -66,17 +67,14 @@
                 <label for="Information">Any requirements or details?</label>
                 <input type="text" id="Information" name="Information" placeholder="requirements or details?" required>
 
-
-
                 <label for="shipping">Do you need shipping?</label>
-<div class="radio-buttons">
-    <input type="radio" id="yesShipping" name="shipping" value="Yes">
-    <label for="yesShipping">Yes</label>
+                <div class="radio-buttons">
+                    <input type="radio" id="yesShipping" name="shipping" value="Yes">
+                    <label for="yesShipping">Yes</label>
 
-    <input type="radio" id="noShipping" name="shipping" value="No" checked>
-    <label for="noShipping">No</label>
-</div>
-
+                    <input type="radio" id="noShipping" name="shipping" value="No" checked>
+                    <label for="noShipping">No</label>
+                </div>
 
                 <!-- Shipping Form (hidden by default) -->
                 <div id="shippingForm" style="display:none;">
@@ -99,7 +97,6 @@
                 <button type="submit">Order Now</button>
             </form>
         </div>
-
     </section>
 
     <footer>
@@ -107,62 +104,78 @@
     </footer>
 
     <script>
-       function submitOrder() {
-    var productName = document.querySelector('h2').innerText;
-    var email = document.getElementById("email").value;
-    var instagram = document.getElementById("instagram").value;
-    var option1 = document.getElementById("option1").value;
-    var option2 = document.getElementById("option2").value;
-    var shipping = document.querySelector('input[name="shipping"]:checked').value;
-    var address = "";
-    var city = "";
-    var zip = "";
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-    // Check if shipping is selected as "Yes" to collect shipping details
-    if (shipping === "Yes") {
-        address = document.getElementById("address").value;
-        city = document.getElementById("city").value;
-        zip = document.getElementById("zip").value;
-    }
+            // Collect form data
+            var productName = document.querySelector('h2').innerText;
+            var email = document.getElementById('email').value;
+            var instagram = document.getElementById('instagram').value;
+            var song = document.getElementById('song').value;
+            var productOption1 = document.getElementById('productOptions1').value;
+            var productOption2 = document.getElementById('productOptions2').value;
+            var productOption3 = document.getElementById('productOptions3').value;
+            var information = document.getElementById('Information').value;
+            var shipping = document.querySelector('input[name="shipping"]:checked').value;
+            var shippingAddress = '';
+            var shippingCity = '';
+            var shippingPostalCode = '';
 
-    // Form the email content
-    var emailContent = `
-        Product: ${productName}\n
-        Email: ${email}\n
-        Instagram: ${instagram}\n
-        Option 1: ${option1}\n
-        Option 2: ${option2}\n
-        Shipping: ${shipping}\n
-        Address: ${address}\n
-        City: ${city}\n
-        ZIP Code: ${zip}
-    `;
+            // If "Yes" is selected for shipping, get the shipping details
+            if (shipping === 'Yes') {
+                shippingAddress = document.getElementById('shippingAddress').value;
+                shippingCity = document.getElementById('shippingCity').value;
+                shippingPostalCode = document.getElementById('shippingPostalCode').value;
+            }
 
-    // Sending email via EmailJS or any other email service
-    // Assuming you have already integrated EmailJS service
-    emailjs.send("your_service_id", "your_template_id", {
-        to_email: email, // send confirmation to the user
-        message: emailContent,
-        photo: document.getElementById('uploadPhoto').files[0]
-    }).then(function(response) {
-        alert('Order submitted! Please check your email to confirm.');
-    }, function(error) {
-        alert('Failed to submit the order: ' + error);
-    });
-}
+            // Prepare email content
+            var emailContent = `
+                Product: ${productName}\n
+                Email: ${email}\n
+                Instagram: ${instagram}\n
+                Song/Quote: ${song}\n
+                Writing Color: ${productOption1}\n
+                Extra: ${productOption2}\n
+                Quantity: ${productOption3}\n
+                Special Details: ${information}\n
+                Shipping: ${shipping}\n
+                Shipping Address: ${shippingAddress}\n
+                City: ${shippingCity}\n
+                Postal Code: ${shippingPostalCode}
+            `;
 
-// Display the shipping form if "Yes" is selected for shipping
-document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
-    el.addEventListener('change', function() {
-        var shippingForm = document.getElementById('shippingForm');
-        if (this.value === 'Yes') {
-            shippingForm.style.display = 'block';
-        } else {
-            shippingForm.style.display = 'none';
-        }
-    });
-});
+            // Send email via EmailJS
+            emailjs.send('service_tpsldi4', 'template_dzo11gj', {
+                product_name: productName,
+                email: email,
+                instagram: instagram,
+                song: song,
+                product_option1: productOption1,
+                product_option2: productOption2,
+                product_option3: productOption3,
+                information: information,
+                shipping: shipping,
+                shipping_address: shippingAddress,
+                shipping_city: shippingCity,
+                shipping_postal_code: shippingPostalCode
+            }).then(function(response) {
+                alert('Order submitted! Please check your email to confirm.');
+            }, function(error) {
+                alert('Failed to submit the order: ' + error);
+            });
+        });
 
+        // Show or hide the shipping form based on "Yes" or "No" selection
+        document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
+            el.addEventListener('change', function() {
+                var shippingForm = document.getElementById('shippingForm');
+                if (this.value === 'Yes') {
+                    shippingForm.style.display = 'block';
+                } else {
+                    shippingForm.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
