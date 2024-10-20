@@ -88,7 +88,7 @@
                 }
             }).then(function (response) {
                 if (response.ok) {
-                    alert('Form submitted successfully without image!');
+                    alert('Form submitted successfully');
 
                     // Now handle the file separately
                     sendFileSeparately();
@@ -111,7 +111,7 @@
             formData.append("file", productImage);
 
             // Use an email service or backend here
-            fetch('YOUR_BACKEND_ENDPOINT_OR_EMAIL_SERVICE', {  // You need a service for this
+            fetch('service_tpsldi4', {  // You need a service for this
                 method: 'POST',
                 body: formData
             }).then(function (response) {
