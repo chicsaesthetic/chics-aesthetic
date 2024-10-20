@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style4.css">
     <title>Chic's Aesthetic - Custom Sign</title>
+    <link rel="stylesheet" href="style4.css">
 </head>
 <body class="cute-theme">
 
@@ -18,17 +18,13 @@
         <div class="product-details">
             <h2>Custom Sign</h2>
 
-            <form id="orderForm" action="https://formspree.io/f/xgveennd" method="POST" >
-                <!-- Input fields for order -->
+            <!-- Formspree Form -->
+            <form id="orderForm" action="https://formspree.io/f/xgveennd" method="POST" enctype="multipart/form-data">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
                 <label for="instagram">Instagram Username:</label>
                 <input type="text" id="instagram" name="instagram" placeholder="Enter your Instagram name" required>
-
-                <!-- Image upload -->
-                <label for="productImage">Upload your inspo:</label>
-                <input type="file" id="productImage" name="productImage" required>
 
                 <label for="productOptions1">Select Your Material:</label>
                 <select id="productOptions1" name="productOptions1">
@@ -46,6 +42,9 @@
                 <label for="Information">Any requirements or details?</label>
                 <input type="text" id="Information" name="Information" placeholder="requirements or details?" required>
 
+                <label for="productImage">Upload your inspo (image):</label>
+                <input type="file" id="productImage" name="productImage" required>
+
                 <label for="shipping">Do you need shipping?</label>
                 <div class="radio-buttons">
                     <input type="radio" id="yesShipping" name="shipping" value="Yes">
@@ -55,22 +54,11 @@
                     <label for="noShipping">No</label>
                 </div>
 
-                <!-- Shipping Form (hidden by default) -->
-                <div id="shippingForm" style="display:none;">
-                    <h4>Shipping Information</h4>
-                    <label for="shippingAddress">Shipping Address:</label>
-                    <input type="text" id="shippingAddress" name="shippingAddress" placeholder="Enter your shipping address">
-
-                    <label for="shippingCity">City:</label>
-                    <input type="text" id="shippingCity" name="shippingCity" placeholder="Enter your city">
-
-                    <label for="shippingPostalCode">Postal Code:</label>
-                    <input type="text" id="shippingPostalCode" name="shippingPostalCode" placeholder="Enter your postal code">
-                </div>
-
+                <!-- Submit Form Button -->
                 <br><br>
                 <button type="submit">Order Now</button>
             </form>
+
         </div>
     </section>
 
@@ -78,91 +66,66 @@
         <p>Thank you for visiting! Your order will be processed after submitting the form.</p>
     </footer>
 
-    <!-- Thank You Page -->
-    <div class="thank-you-message" id="thank-you-message" style="display:none;">
-        <h1>Your Order Has Been Submitted!</h1>
-        <p>Thank you for purchasing with Chic's Aesthetic. We will process your order and get back to you shortly.</p>
-    </div>
-
-    <!-- JavaScript for form submission and shipping visibility -->
+    <!-- JavaScript to Handle Form and File Upload Separately -->
     <script>
-        document.getElementById('orderForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-            
-            // Collect form data
-            const email = document.getElementById("email").value;
-            const instagram = document.getElementById("instagram").value;
-            const sign = document.getElementById("sign").value;
-            const shipping = document.querySelector('input[name="shipping"]:checked').value;
-            const shippingAddress = shipping === "Yes" ? document.getElementById("shippingAddress").value : "";
-            const shippingCity = shipping === "Yes" ? document.getElementById("shippingCity").value : "";
-            const shippingPostalCode = shipping === "Yes" ? document.getElementById("shippingPostalCode").value : "";
+        // Intercept form submission
+        document.getElementById('orderForm').addEventListener('submit', function (event) {
+            event.preventDefault();  // Prevent the default form submission
 
-            // Prepare data for Formspree
-            const formData = new FormData(this); // Get all form data
-            formData.append("email", email); // Add email to Formspree data
-            formData.append("instagram", instagram); // Add Instagram to Formspree data
-            formData.append("sign", sign); // Add sign to Formspree data
+            // Submit the form (without the file) to Formspree
+            let form = event.target;
+            let formData = new FormData(form);
 
-            // Submit the form to Formspree
-            fetch(this.action, {
-                method: this.method,
+            // Remove the file input field from the Formspree submission
+            formData.delete('productImage');
+
+            // Send form data (without file) to Formspree
+            fetch('https://formspree.io/f/xgveennd', {
+                method: 'POST',
                 body: formData,
                 headers: {
-                    "Accept": "application/json"
+                    'Accept': 'application/json'
                 }
-            })
-            .then(response => {
+            }).then(function (response) {
                 if (response.ok) {
-                    document.getElementById('thank-you-message').style.display = 'block';
-                    console.log('Your order has been submitted!');
+                    alert('Form submitted successfully without image!');
+
+                    // Now handle the file separately
+                    sendFileSeparately();
+
                 } else {
-                    alert('There was a problem with your submission.');
+                    alert('There was a problem submitting your form.');
                 }
-            })
-            .catch(error => {
-                alert('There was a problem with your submission: ' + error.message);
-            });
-
-            // Get the uploaded file (if applicable)
-            const fileInput = document.getElementById('productImage');
-            const file = fileInput.files[0];
-
-            // Prepare FormData for the file upload (if a file is selected)
-            if (file) {
-                const fileData = new FormData();
-                fileData.append("file", file);
-                fileData.append("email", email); // Adding email to send with the file
-
-                // Upload the file separately
-                fetch("https://formsubmit.co/ 9cd2cf27cfe06c46227fc8f166e12569", {
-                    method: "POST",
-                    body: fileData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        console.log("File uploaded successfully.");
-                    } else {
-                        console.log("File upload failed.");
-                    }
-                })
-                .catch(error => {
-                    console.log("Error uploading file: ", error);
-                });
-            }
-        });
-
-        // Show or hide the shipping form based on "Yes" or "No" selection
-        document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
-            el.addEventListener('change', function() {
-                var shippingForm = document.getElementById('shippingForm');
-                if (this.value === 'Yes') {
-                    shippingForm.style.display = 'block';
-                } else {
-                    shippingForm.style.display = 'none';
-                }
+            }).catch(function (error) {
+                alert('There was an error: ' + error.message);
             });
         });
+
+        // Function to send file separately to email
+        function sendFileSeparately() {
+            let email = document.getElementById("email").value;
+            let productImage = document.getElementById('productImage').files[0];
+
+            let formData = new FormData();
+            formData.append("email", email);
+            formData.append("file", productImage);
+
+            // Use an email service or backend here
+            fetch('YOUR_BACKEND_ENDPOINT_OR_EMAIL_SERVICE', {  // You need a service for this
+                method: 'POST',
+                body: formData
+            }).then(function (response) {
+                if (response.ok) {
+                    alert('Image sent successfully to your email!');
+                } else {
+                    alert('Error sending the image.');
+                }
+            }).catch(function (error) {
+                alert('Error occurred while sending the image: ' + error.message);
+            });
+        }
+
     </script>
+
 </body>
 </html>
