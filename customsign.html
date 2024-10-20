@@ -66,8 +66,20 @@
         <p>Thank you for visiting! Your order will be processed after submitting the form.</p>
     </footer>
 
-    <!-- JavaScript to Handle Form and File Upload Separately -->
+    
     <script>
+        // Show or hide the shipping form based on "Yes" or "No" selection
+        document.querySelectorAll('input[name="shipping"]').forEach(function(el) {
+            el.addEventListener('change', function() {
+                var shippingForm = document.getElementById('shippingForm');
+                if (this.value === 'Yes') {
+                    shippingForm.style.display = 'block';
+                } else {
+                    shippingForm.style.display = 'none';
+                }
+            });
+        });
+
         // Intercept form submission
         document.getElementById('orderForm').addEventListener('submit', function (event) {
             event.preventDefault();  // Prevent the default form submission
